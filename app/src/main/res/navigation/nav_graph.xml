@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.marbey.saludasuhogar.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_havenFragment"
+            app:destination="@id/havenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/havenFragment"
+        android:name="com.marbey.saludasuhogar.ui.fragments.HavenFragment"
+        android:label="fragment_haven"
+        tools:layout="@layout/fragment_haven" >
+        <action
+            android:id="@+id/action_havenFragment_to_grandparentDetailFragmentDialog"
+            app:destination="@id/grandparentDetailFragmentDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/grandparentDetailFragmentDialog"
+        android:name="com.marbey.saludasuhogar.ui.fragments.GrandparentsDetailDialogFragment"
+        android:label="GrandparentDetailFragmentDialog"
+        tools:layout="@layout/fragment_grandparents_detail_dialog">
+
+    </dialog>
+
+</navigation>

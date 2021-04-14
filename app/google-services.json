@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "657428820099",
+    "project_id": "saludasuhogarapp",
+    "storage_bucket": "saludasuhogarapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657428820099:android:92e663eda9f5093d446bb6",
+        "android_client_info": {
+          "package_name": "com.marbey.saludasuhogar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657428820099-i5b377vhddqms4alg0h3un5cnkmj69il.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marbey.saludasuhogar",
+            "certificate_hash": "7e1c4a927437f1b0f654f7065742141386157da0"
+          }
+        },
+        {
+          "client_id": "657428820099-lqpsqbed339797veapc9t3pq022mbiau.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKFMoH7tnmBR1yUK8x6uMJVHh2O61WfEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657428820099-lqpsqbed339797veapc9t3pq022mbiau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,7 +4,10 @@
     <dimen name="altoLogoSaludHogar">75dp</dimen>
     <dimen name="toolbarAlto">30dp</dimen>
     <dimen name="cardCornerRadius">4dp</dimen>
+    <dimen name="cardMargin">6dp</dimen>
     <dimen name="anchoImageViewHome">30dp</dimen>
     <dimen name="tamañoItemsHomePrimary">20sp</dimen>
     <dimen name="tamañoItemsHomeSecondary">15sp</dimen>
+    <dimen name="altoImage">150dp</dimen>
+    <dimen name="marginCardView">10dp</dimen>
 </resources>

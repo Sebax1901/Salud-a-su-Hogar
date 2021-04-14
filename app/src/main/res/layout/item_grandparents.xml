@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    android:elevation="4dp"
+    android:layout_margin="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/shape_parrafo">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altoImage"
+            android:src="@drawable/abuelo_image"
+            android:padding="5dp"/>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Abuelito"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/marginCardView"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Otro dato del Abuelito"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/marginCardView"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
