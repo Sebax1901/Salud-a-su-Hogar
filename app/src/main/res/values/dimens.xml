@@ -10,4 +10,5 @@
     <dimen name="tamañoItemsHomeSecondary">15sp</dimen>
     <dimen name="altoImage">150dp</dimen>
     <dimen name="marginCardView">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

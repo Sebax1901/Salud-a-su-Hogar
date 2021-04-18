@@ -20,6 +20,7 @@
             android:padding="5dp"/>
         
         <TextView
+            android:id="@+id/tvGranparentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre del Abuelito"
@@ -29,9 +30,19 @@
             android:gravity="center"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/tvGranparentAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Otro dato del Abuelito"
+            android:text="Edad"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/marginCardView"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tvGranparentHaven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hogar del Abuelito"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_margin="@dimen/marginCardView"

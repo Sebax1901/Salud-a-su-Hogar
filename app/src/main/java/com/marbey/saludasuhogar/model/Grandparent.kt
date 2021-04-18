@@ -2,9 +2,9 @@ package com.marbey.saludasuhogar.model
 
 import java.io.Serializable
 
-class Haven: Serializable {
+class Grandparent: Serializable {
     var name = ""
-    var nurseName = ""
+    var age = 0
+    var haven = ""
     var image = ""
-
 }

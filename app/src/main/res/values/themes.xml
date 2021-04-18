@@ -15,4 +15,13 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.SaludASuHogar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SaludASuHogar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SaludASuHogar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
