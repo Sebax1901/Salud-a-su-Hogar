@@ -36,9 +36,9 @@ class GrandparentAdapter(val grandparentListener: GranparentListener) : Recycler
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val tvGrandparentName = itemView.findViewById<TextView>(R.id.tvGranparentName)
-        val tvGrandparentAge = itemView.findViewById<TextView>(R.id.tvGranparentAge)
-        val tvGrandparentHaven = itemView.findViewById<TextView>(R.id.tvGranparentHaven)
+        val tvGrandparentName = itemView.findViewById<TextView>(R.id.tvGranparentName)!!
+        val tvGrandparentAge = itemView.findViewById<TextView>(R.id.tvGranparentAge)!!
+        val tvGrandparentHaven = itemView.findViewById<TextView>(R.id.tvGranparentHaven)!!
     }
 
 }

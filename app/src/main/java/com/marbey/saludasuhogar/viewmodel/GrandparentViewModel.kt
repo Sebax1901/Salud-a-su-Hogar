@@ -17,7 +17,7 @@ class GrandparentViewModel: ViewModel() {
     }
 
     fun getGranparentFromFirebase(){
-        firestoreService.getGranparent(object: Callback<List<Grandparent>> {
+        firestoreService.getGrandparent(object: Callback<List<Grandparent>> {
             override fun onSuccess(result: List<Grandparent>?) {
                 listGrandparent.postValue(result)
                 processFinished()

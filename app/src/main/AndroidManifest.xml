@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaludASuHogar">
-        <activity
-            android:name=".view.ui.activities.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.SaludASuHogar.NoActionBar"></activity>
         <activity android:name=".view.ui.activities.SplashscreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.ui.activities.MainActivity" />
+        <activity
+            android:name=".view.ui.activities.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.SaludASuHogar.NoActionBar"/>
     </application>
 
 </manifest>

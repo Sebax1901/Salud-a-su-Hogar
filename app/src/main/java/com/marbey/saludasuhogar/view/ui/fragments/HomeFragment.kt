@@ -17,6 +17,7 @@ import com.marbey.saludasuhogar.view.adapter.HavenListener
 import com.marbey.saludasuhogar.viewmodel.HavenViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment(), HavenListener {
 
     private lateinit var havenAdapter: HavenAdapter
@@ -44,11 +45,11 @@ class HomeFragment : Fragment(), HavenListener {
     }
 
     fun observeViewModel(){
-        viewModel.listHaven.observe(this, Observer<List<Haven>>{ haven ->
+        viewModel.listHaven.observe(viewLifecycleOwner, Observer<List<Haven>>{ haven ->
             havenAdapter.updateData(haven)
         })
 
-        viewModel.isLoading.observe(this, Observer<Boolean>{
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer<Boolean>{
             if(it != null){
                 rlBaseHome.visibility = View.INVISIBLE
             }

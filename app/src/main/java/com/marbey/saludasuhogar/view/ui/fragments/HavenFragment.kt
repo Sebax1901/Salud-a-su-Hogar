@@ -6,14 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
+import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.adapter.GrandparentAdapter
 import com.marbey.saludasuhogar.view.adapter.GranparentListener
 import com.marbey.saludasuhogar.viewmodel.GrandparentViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_haven.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
+@Suppress("DEPRECATION")
 class HavenFragment : Fragment(), GranparentListener {
 
     private lateinit var grandparentAdapter: GrandparentAdapter
@@ -25,19 +33,34 @@ class HavenFragment : Fragment(), GranparentListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tbMain.navigationIcon = ContextCompat.getDrawable(view.context, R.drawable.ic_close)
-        tbMain.setTitleTextColor(Color.WHITE)
-        tbMain.setNavigationOnClickListener {
 
+        viewModel = ViewModelProviders.of(this).get(GrandparentViewModel::class.java)
+        viewModel.refresh()
+
+        grandparentAdapter = GrandparentAdapter(this)
+
+        rvHavens.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = grandparentAdapter
         }
 
-        val granparent = arguments?.getSerializable("grandparent") as Grandparent
-        tbMain.title = granparent.name
-
-        
+        observeViewModel()
 
     }
 
+    fun observeViewModel(){
+        viewModel.listGrandparent.observe(viewLifecycleOwner, Observer<List<Grandparent>>{ haven ->
+            grandparentAdapter.updateData(haven)
+        })
 
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer<Boolean>{
+            if(it != null){
+                rlBaseHaven.visibility = View.INVISIBLE
+            }
+        })
+    }
 
+    override fun onGranparentClicked(granparent: Grandparent, position: Int) {
+
+    }
 }
