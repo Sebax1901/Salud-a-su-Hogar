@@ -7,6 +7,9 @@ import android.view.View
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.marbey.saludasuhogar.R
@@ -28,6 +31,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         firestoreService = FirestoreService()
+
+/*        // Integración de Inicio de Sesión con Google
+
+        val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        var mGoogleSignInClient = GoogleSignIn.getClient(this, gso)*/
     }
 
     fun onStartClicked(view: View){
@@ -56,6 +64,11 @@ class LoginActivity : AppCompatActivity() {
                     view.isEnabled = true
                 }
             }
+
+        // Integración de Inicio de Sesión con Google
+
+
+
     }
 
     private fun saveUserAndStartMainActivity(user: User, view: View) {
