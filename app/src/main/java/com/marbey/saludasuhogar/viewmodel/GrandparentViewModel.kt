@@ -12,11 +12,11 @@ class GrandparentViewModel: ViewModel() {
     var listGrandparent: MutableLiveData<List<Grandparent>> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
 
-    fun refresh(){
-        getGranparentFromFirebase()
+    fun refresh(name: String){
+        getGranparentFromFirebase(name)
     }
 
-    fun getGranparentFromFirebase(){
+    fun getGranparentFromFirebase(haven: String){
         firestoreService.getGrandparent(object: Callback<List<Grandparent>> {
             override fun onSuccess(result: List<Grandparent>?) {
                 listGrandparent.postValue(result)
@@ -26,7 +26,7 @@ class GrandparentViewModel: ViewModel() {
             override fun onFailed(exception: Exception) {
                 processFinished()
             }
-        })
+        }, haven)
     }
 
     fun processFinished(){

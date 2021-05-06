@@ -25,8 +25,9 @@ class FirestoreService {
             .addOnFailureListener { exception -> callback.onFailed(exception) }
     }
 
-    fun getGrandparent(callback: Callback<List<Grandparent>>){
+    fun getGrandparent(callback: Callback<List<Grandparent>>, haven: String){
         firebaseFirestore.collection(GRANDPARENTS_COLLECTION_NAME)
+                .whereEqualTo("haven", haven)
                 .get()
                 .addOnSuccessListener { result ->
                     for (doc in result){

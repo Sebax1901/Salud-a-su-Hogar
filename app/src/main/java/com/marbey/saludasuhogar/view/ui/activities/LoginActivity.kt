@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun onStartClicked(view: View){
         view.isEnabled = false
+
         auth.signInAnonymously()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){

@@ -34,8 +34,11 @@ class HavenFragment : Fragment(), GranparentListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val haven = arguments?.getSerializable("haven") as Haven
+        val havenName = haven.name
+
         viewModel = ViewModelProviders.of(this).get(GrandparentViewModel::class.java)
-        viewModel.refresh()
+        viewModel.refresh(havenName)
 
         grandparentAdapter = GrandparentAdapter(this)
 
