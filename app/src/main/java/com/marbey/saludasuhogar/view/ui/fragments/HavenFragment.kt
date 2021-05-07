@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
@@ -64,6 +66,7 @@ class HavenFragment : Fragment(), GranparentListener {
     }
 
     override fun onGranparentClicked(granparent: Grandparent, position: Int) {
-
+        val bundle = bundleOf("granparent" to granparent)
+        findNavController().navigate(R.id.grandparentDetailFragmentDialog, bundle)
     }
 }
