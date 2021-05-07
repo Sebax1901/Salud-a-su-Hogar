@@ -85,6 +85,10 @@
                         android:textColor="@color/black"
                         android:layout_marginRight="15dp"
                         android:layout_marginLeft="15dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rvMedicine"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </ScrollView>
