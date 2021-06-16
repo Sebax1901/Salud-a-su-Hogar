@@ -4,11 +4,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.model.Haven
+import com.marbey.saludasuhogar.model.Medicine
 import com.marbey.saludasuhogar.model.User
 
 const val HAVEN_COLLECTION_NAME = "havens"
 const val GRANDPARENTS_COLLECTION_NAME = "granparents"
 const val USER_COLLECTION_NAME = "users"
+const val MEDICINE_COLLECTION_NAME = "medicines"
 
 class FirestoreService {
 
@@ -32,6 +34,20 @@ class FirestoreService {
                 .addOnSuccessListener { result ->
                     for (doc in result){
                         val list = result.toObjects(Grandparent::class.java)
+                        callback.onSuccess(list)
+                        break
+                    }
+                }
+                .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
+    fun getMedicine(callback: Callback<List<Medicine>>, grandparent: String){
+        firebaseFirestore.collection(MEDICINE_COLLECTION_NAME)
+                .whereEqualTo("grandparent", grandparent)
+                .get()
+                .addOnSuccessListener { result ->
+                    for (doc in result){
+                        val list = result.toObjects(Medicine::class.java)
                         callback.onSuccess(list)
                         break
                     }

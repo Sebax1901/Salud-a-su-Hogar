@@ -25,4 +25,19 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_plus"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:onClick="onPlusClicked"
+            tools:ignore="OnClick" />
+
+    </RelativeLayout>
+
 </FrameLayout>

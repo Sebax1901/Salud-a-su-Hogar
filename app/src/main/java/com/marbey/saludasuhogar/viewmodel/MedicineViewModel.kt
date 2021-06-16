@@ -2,31 +2,30 @@ package com.marbey.saludasuhogar.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.marbey.saludasuhogar.model.Haven
+import com.marbey.saludasuhogar.model.Medicine
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
 import java.lang.Exception
 
-class HavenViewModel: ViewModel() {
-    val firestoreService = FirestoreService()
-    var listHaven: MutableLiveData<List<Haven>> = MutableLiveData()
+class MedicineViewModel: ViewModel() {
+    val firestorService = FirestoreService()
+    var listMedicine: MutableLiveData<List<Medicine>> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
 
-    fun refresh(){
-        getHavenFromFirebase()
+    fun refresh(name: String){
+        getMedicineFromFirebase(name)
     }
 
-    fun getHavenFromFirebase(){
-        firestoreService.getHaven(object: Callback<List<Haven>> {
-            override fun onSuccess(result: List<Haven>?) {
-                listHaven.postValue(result)
+    fun getMedicineFromFirebase(name: String) {
+        firestorService.getMedicine(object : Callback<List<Medicine>>{
+            override fun onSuccess(result: List<Medicine>?) {
+                listMedicine.postValue(result)
                 processFinished()
             }
-
             override fun onFailed(exception: Exception) {
                 processFinished()
             }
-        })
+        }, name)
     }
 
     fun processFinished(){

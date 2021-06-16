@@ -7,4 +7,8 @@ interface HavenListener {
     fun onHavenClicked(haven: Haven, position: Int){
 
     }
+
+    fun onPlusClicked(){
+
+    }
 }

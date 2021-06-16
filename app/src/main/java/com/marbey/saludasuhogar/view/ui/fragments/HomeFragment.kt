@@ -44,7 +44,7 @@ class HomeFragment : Fragment(), HavenListener {
 
     }
 
-    fun observeViewModel(){
+    private fun observeViewModel(){
         viewModel.listHaven.observe(viewLifecycleOwner, Observer<List<Haven>>{ haven ->
             havenAdapter.updateData(haven)
         })
@@ -61,4 +61,7 @@ class HomeFragment : Fragment(), HavenListener {
         findNavController().navigate(R.id.havenFragment, bundle)
     }
 
+    override fun onPlusClicked() {
+        findNavController().navigate(R.id.addHavenDialog)
+    }
 }

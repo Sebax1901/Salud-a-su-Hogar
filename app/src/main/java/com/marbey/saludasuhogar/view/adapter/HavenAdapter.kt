@@ -1,5 +1,6 @@
 package com.marbey.saludasuhogar.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +16,12 @@ class HavenAdapter(val havenListener: HomeFragment) : RecyclerView.Adapter<Haven
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_home, parent, false))
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HavenAdapter.ViewHolder, position: Int) {
         val haven = listHaven[position] as Haven
 
-        holder.tvHavenName.text = haven.name
-        holder.tvNurseName.text = haven.nurseName
+        holder.tvHavenName.text = "Hogar: " + haven.name
+        holder.tvNurseName.text = "Jefe: " + haven.nurseName
 
         holder.itemView.setOnClickListener {
             havenListener.onHavenClicked(haven, position)

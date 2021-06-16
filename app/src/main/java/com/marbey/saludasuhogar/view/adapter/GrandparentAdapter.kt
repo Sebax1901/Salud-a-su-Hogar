@@ -1,5 +1,6 @@
 package com.marbey.saludasuhogar.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,13 @@ class GrandparentAdapter(val grandparentListener: GranparentListener) : Recycler
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_grandparents, parent, false))
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: GrandparentAdapter.ViewHolder, position: Int) {
         val grandparent = listGranparent[position] as Grandparent
 
-        holder.tvGrandparentName.text = grandparent.name
-        holder.tvGrandparentAge.text = grandparent.age.toString()
-        holder.tvGrandparentHaven.text = grandparent.haven
+        holder.tvGrandparentName.text = "Nombre: " + grandparent.name
+        holder.tvGrandparentAge.text = "Edad: " + grandparent.age.toString()
+        holder.tvGrandparentHaven.text = "Hogar: " + grandparent.haven
 
         holder.itemView.setOnClickListener {
             grandparentListener.onGranparentClicked(grandparent, position)

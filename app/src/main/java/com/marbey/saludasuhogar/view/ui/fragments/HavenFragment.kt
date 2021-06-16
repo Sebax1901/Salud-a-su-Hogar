@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,9 +17,7 @@ import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.adapter.GrandparentAdapter
 import com.marbey.saludasuhogar.view.adapter.GranparentListener
 import com.marbey.saludasuhogar.viewmodel.GrandparentViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_haven.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 @Suppress("DEPRECATION")
 class HavenFragment : Fragment(), GranparentListener {

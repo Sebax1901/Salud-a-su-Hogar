@@ -13,4 +13,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="username">Username</string>
     <string name="error_while_connecting_to_the_server">Error while connecting to the server</string>
+    <string name="nurseName">Nombre de la Enfermera</string>
+    <string name="HavenName">Nombre del Hogar</string>
+    <string name="add">Agregar</string>
+    <string name="tbAddHaven">Añadir un Nuevo Hogar</string>
 </resources>

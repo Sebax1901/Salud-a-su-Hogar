@@ -13,7 +13,19 @@
         <action
             android:id="@+id/action_homeFragment_to_havenFragment"
             app:destination="@id/havenFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addHavenFragment"
+            app:destination="@id/addHavenDialog" />
     </fragment>
+
+    <dialog
+        android:id="@+id/addHavenDialog"
+        android:name="com.marbey.saludasuhogar.view.ui.fragments.AddHavenDialogFragment"
+        android:label="AddHavenDialog"
+        tools:layout="@layout/fragment_add_haven_dialog">
+
+    </dialog>
+
     <fragment
         android:id="@+id/havenFragment"
         android:name="com.marbey.saludasuhogar.view.ui.fragments.HavenFragment"
