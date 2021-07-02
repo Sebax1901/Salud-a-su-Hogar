@@ -25,4 +25,19 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/addGrandparentIcon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_plus"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:onClick="onPlusGrandparentClicked"
+            tools:ignore="OnClick" />
+    </RelativeLayout>
+
 </FrameLayout>

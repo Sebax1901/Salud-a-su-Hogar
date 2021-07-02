@@ -57,11 +57,11 @@ class HomeFragment : Fragment(), HavenListener {
     }
 
     override fun onHavenClicked(haven: Haven, position: Int) {
+        AddHavenIcon.visibility = View.INVISIBLE
         val bundle = bundleOf("haven" to haven)
         findNavController().navigate(R.id.havenFragment, bundle)
     }
 
-    override fun onPlusClicked() {
-        findNavController().navigate(R.id.addHavenDialog)
-    }
+
+
 }

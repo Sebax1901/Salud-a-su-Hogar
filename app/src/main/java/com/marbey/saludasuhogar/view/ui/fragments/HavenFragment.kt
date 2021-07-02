@@ -1,6 +1,5 @@
 package com.marbey.saludasuhogar.view.ui.fragments
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,12 +14,12 @@ import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.adapter.GrandparentAdapter
-import com.marbey.saludasuhogar.view.adapter.GranparentListener
+import com.marbey.saludasuhogar.view.adapter.GrandparentListener
 import com.marbey.saludasuhogar.viewmodel.GrandparentViewModel
 import kotlinx.android.synthetic.main.fragment_haven.*
 
 @Suppress("DEPRECATION")
-class HavenFragment : Fragment(), GranparentListener {
+class HavenFragment : Fragment(), GrandparentListener {
 
     private lateinit var grandparentAdapter: GrandparentAdapter
     private lateinit var viewModel: GrandparentViewModel
@@ -61,8 +60,8 @@ class HavenFragment : Fragment(), GranparentListener {
         })
     }
 
-    override fun onGranparentClicked(granparent: Grandparent, position: Int) {
-        val bundle = bundleOf("granparent" to granparent)
+    override fun onGrandparentClicked(grandparent: Grandparent, position: Int) {
+        val bundle = bundleOf("grandparent" to grandparent)
         findNavController().navigate(R.id.grandparentDetailFragmentDialog, bundle)
     }
 }

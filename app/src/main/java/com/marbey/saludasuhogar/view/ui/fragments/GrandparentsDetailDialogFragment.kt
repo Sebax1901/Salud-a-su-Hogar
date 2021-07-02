@@ -45,7 +45,7 @@ class GrandparentsDetailDialogFragment : DialogFragment(), MedicineListener {
             dismiss()
         }
 
-        val grandparent = arguments?.getSerializable("granparent") as Grandparent
+        val grandparent = arguments?.getSerializable("grandparent") as Grandparent
         var grandparentName = grandparent.name
 
         viewModel = ViewModelProviders.of(this).get(MedicineViewModel::class.java)

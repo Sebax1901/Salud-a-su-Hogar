@@ -8,7 +8,7 @@ import com.marbey.saludasuhogar.model.Medicine
 import com.marbey.saludasuhogar.model.User
 
 const val HAVEN_COLLECTION_NAME = "havens"
-const val GRANDPARENTS_COLLECTION_NAME = "granparents"
+const val GRANDPARENTS_COLLECTION_NAME = "grandparents"
 const val USER_COLLECTION_NAME = "users"
 const val MEDICINE_COLLECTION_NAME = "medicines"
 
