@@ -38,7 +38,6 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     val username = username.text.toString()
-
                     if (username.isEmpty()){
                         showEmptyMessage(view)
                     } else {
