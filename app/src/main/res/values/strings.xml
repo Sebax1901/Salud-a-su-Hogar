@@ -14,7 +14,7 @@
     <string name="username">Username</string>
     <string name="error_while_connecting_to_the_server">Error en la conexión con el servidor</string>
     <string name="user_is_empty">El Usuario no puede estar en blanco</string>
-    <string name="nurseName">Nombre de la Enfermera</string>
+    <string name="nurseName">Nombre Enfermero/a</string>
     <string name="grandparentName">Nombre del Paciente</string>
     <string name="HavenName">Nombre del Hogar</string>
     <string name="add">Agregar</string>

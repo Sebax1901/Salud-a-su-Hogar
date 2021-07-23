@@ -76,6 +76,8 @@ class LoginActivity : AppCompatActivity() {
                 view.isEnabled = true
             }
         })
+
+
     }
 
     private fun showErrorMessage(view: View) {

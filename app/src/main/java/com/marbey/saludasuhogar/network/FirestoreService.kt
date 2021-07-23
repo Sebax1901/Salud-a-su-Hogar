@@ -14,8 +14,8 @@ const val MEDICINE_COLLECTION_NAME = "medicines"
 
 class FirestoreService {
 
-    val firebaseFirestore = FirebaseFirestore.getInstance()
-    val settings = FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
+    private val firebaseFirestore = FirebaseFirestore.getInstance()
+    private val settings = FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
 
     init {
         firebaseFirestore.firestoreSettings = settings

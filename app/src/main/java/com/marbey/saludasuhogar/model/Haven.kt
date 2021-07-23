@@ -6,6 +6,5 @@ class Haven: Serializable {
     var name = ""
     var nurseName = ""
     var image = ""
-    var grandparentList: List<Grandparent>? = null
 
 }

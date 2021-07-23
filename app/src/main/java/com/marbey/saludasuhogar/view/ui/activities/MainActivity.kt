@@ -17,11 +17,13 @@ class MainActivity : FragmentActivity() {
     fun onPlusHavenClicked(view: View) {
         val intent = Intent(this, AddHavenActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun onPlusGrandparentClicked(view: View) {
         val intent = Intent(this, AddGrandparentActivity::class.java)
         startActivity(intent)
+
     }
 
 
