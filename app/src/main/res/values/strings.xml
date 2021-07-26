@@ -21,4 +21,6 @@
     <string name="tbAddHaven">Añadir un Nuevo Hogar</string>
     <string name="tbAddGrandparent">Añadir un Nuevo Paciente</string>
     <string name="age">Edad</string>
+    <string name="password">Password</string>
+    <string name="Start">Inicio</string>
 </resources>

@@ -20,7 +20,6 @@ class LoginActivity : AppCompatActivity() {
 
     private var googleSignInClient: GoogleSignInClient? = null
     private val TAG = "LoginActivity"
-    private val RC_SIGN_IN = 123
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var firestoreService : FirestoreService
 
