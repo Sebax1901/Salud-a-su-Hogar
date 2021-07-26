@@ -1,5 +1,6 @@
 package com.marbey.saludasuhogar.view.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,71 +29,58 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         firestoreService = FirestoreService()
 
+        session()
+
     }
 
+    private fun session(){
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email = prefs.getString("email", null)
+        val provider = prefs.getString("provider", null)
+
+        if (email != null && provider != null){
+            //loginLayout.visibility = View.INVISIBLE
+            startMainActivity(email,ProviderType.valueOf(provider))
+        }
+
+    }
 
     fun onStartClicked(view: View){
-        view.isEnabled = false
-        auth.signInAnonymously()
-            .addOnCompleteListener { task ->
-                if(task.isSuccessful){
-                    val username = username.text.toString()
-                    if (username.isEmpty()){
-                        showEmptyMessage(view)
-                    } else {
-                        firestoreService.findUserByID(username, object : Callback<User>{
-                            override fun onSuccess(result: User?) {
-                                if (result == null){
-                                    var user = User()
-                                    user.username = username
-                                    saveUserAndStartMainActivity(user, view)
-                                } else {
-                                    startMainActivity()
-                                }
-                            }
-                            override fun onFailed(exception: Exception) {
-                                showErrorMessage(view)
-                            }
-                        })
-                    }
-                } else {
+
+        val username = username.text.toString()
+        val password = password.text.toString()
+
+        if (username.isNotEmpty() && password.isNotEmpty()){
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(username,password).addOnCompleteListener {
+                if (it.isSuccessful){
+                    view.isEnabled = false
+                    startMainActivity(username,ProviderType.BASIC)
+                } else  {
                     showErrorMessage(view)
-                    view.isEnabled = true
                 }
             }
-
-    }
-
-    private fun saveUserAndStartMainActivity(user: User, view: View) {
-        firestoreService.setDocument(user, USER_COLLECTION_NAME, user.username, object : Callback<Void>{
-            override fun onSuccess(result: Void?) {
-                startMainActivity()
-            }
-
-            override fun onFailed(exception: Exception) {
-                showErrorMessage(view)
-                Log.e(TAG, "Error", exception)
-                view.isEnabled = true
-            }
-        })
-
-
+        } else  {
+            showEmptyMessage(view)
+        }
     }
 
     private fun showErrorMessage(view: View) {
-        Snackbar.make(view, getString(R.string.error_while_connecting_to_the_server), Snackbar.LENGTH_LONG)
+        Snackbar.make(view, getString(R.string.error_while_connecting_to_the_account), Snackbar.LENGTH_LONG)
             .setAction("Info", null).show()
         view.isEnabled = true
     } // Print a message when the connection is failed
 
     private fun showEmptyMessage(view: View) {
-        Snackbar.make(view, getString(R.string.user_is_empty), Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Debes ingresar un email y una contraseña", Snackbar.LENGTH_LONG)
             .setAction("Info", null).show()
         view.isEnabled = true
     } // Print a message when user is empty
 
-    private fun startMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun startMainActivity(email: String, provider: ProviderType) {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
         startActivity(intent)
         finish()
     }

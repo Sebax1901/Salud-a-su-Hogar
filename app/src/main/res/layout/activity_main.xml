@@ -14,12 +14,14 @@
             android:id="@+id/tbMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:navigationIcon="@drawable/ic_logout">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:src="@drawable/logo_salud_hogar" />
+                android:src="@drawable/logo_salud_hogar"
+                android:layout_marginEnd="30dp"/>
         </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
