@@ -30,37 +30,42 @@ class AddHavenActivity : AppCompatActivity() {
         haven.name = findViewById<EditText>(R.id.havenNameAdd).text.toString()
         haven.nurseName = findViewById<EditText>(R.id.nurseNameAdd).text.toString()
 
-        val firestoreService = FirestoreService()
-
         fun View.hideKeyboard() {
             val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.hideSoftInputFromWindow(windowToken, 0)
         }
 
-        view.hideKeyboard()
+        if (haven.name.isEmpty() || haven.nurseName.isEmpty()){
+            view.hideKeyboard()
+            Snackbar.make(view, "Debe ingresar un nombre para el hogar y el/la enferemero/a", Snackbar.LENGTH_LONG).show()
+        } else {
+            val firestoreService = FirestoreService()
 
-        firestoreService.setDocument(haven, HAVEN_COLLECTION_NAME,haven.name, object : Callback<Void>{
-            override fun onSuccess(result: Void?) {
-                Snackbar.make(view,"Hogar Creado",Snackbar.LENGTH_LONG).show()
+            view.hideKeyboard()
 
-            }
+            firestoreService.setDocument(haven, HAVEN_COLLECTION_NAME,haven.name, object : Callback<Void>{
+                override fun onSuccess(result: Void?) {
+                    Snackbar.make(view,"Hogar Creado",Snackbar.LENGTH_LONG).show()
 
-            override fun onFailed(exception: Exception) {
-                showMessageError(view)
-            }
+                }
 
-        })
+                override fun onFailed(exception: Exception) {
+                    showMessageError(view)
+                }
 
-        Handler().postDelayed({
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)
+            })
+
+            Handler().postDelayed({
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 1000)
+        }
 
     }
 
     fun showMessageError(view : View){
-        Snackbar.make(view, "Usuario Creado", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(view, "El hogar no ha sido creado", Snackbar.LENGTH_LONG).show()
     }
 
     override fun onBackPressed() {

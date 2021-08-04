@@ -1,6 +1,8 @@
 package com.marbey.saludasuhogar.view.ui.fragments
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -64,6 +66,34 @@ class HomeFragment : Fragment(), HavenListener {
         AddHavenIcon.visibility = View.INVISIBLE
         val bundle = bundleOf("haven" to haven)
         findNavController().navigate(R.id.havenFragment, bundle)
+    }
+
+    override fun onHavenLongClicked(haven: Haven, view: View) {
+        val bundle = bundleOf("haven" to haven)
+        val havenItem = bundle.getSerializable("haven") as Haven
+        val havenName = havenItem.name
+
+        showAlert(view.context,havenName,view)
+
+    }
+
+    private fun showAlert(context: Context, name: String, view: View){
+        AlertDialog.Builder(context)
+            .setTitle("Elminar Paciente")
+            .setMessage("¿Deseas elmininar el hogar $name?")
+            .apply {
+                setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialog, which ->
+                    deleteHaven(name, view)
+                })
+                setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, which ->
+
+                })
+            }
+            .create().show()
+    }
+
+    private fun deleteHaven(name: String, view: View){
+        viewModel.deleteHaven(name, view)
     }
 
 

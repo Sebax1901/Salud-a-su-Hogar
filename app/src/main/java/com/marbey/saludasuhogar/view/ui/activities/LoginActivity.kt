@@ -3,19 +3,14 @@ package com.marbey.saludasuhogar.view.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.marbey.saludasuhogar.R
-import com.marbey.saludasuhogar.model.User
-import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
-import com.marbey.saludasuhogar.network.USER_COLLECTION_NAME
 import kotlinx.android.synthetic.main.activity_login.*
-import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
 

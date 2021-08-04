@@ -9,10 +9,10 @@ import com.marbey.saludasuhogar.model.User
 
 const val HAVEN_COLLECTION_NAME = "havens"
 const val GRANDPARENTS_COLLECTION_NAME = "grandparents"
-const val USER_COLLECTION_NAME = "users"
 const val MEDICINE_COLLECTION_NAME = "medicines"
 
 class FirestoreService {
+
 
     private val firebaseFirestore = FirebaseFirestore.getInstance()
     private val settings = FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
@@ -23,6 +23,12 @@ class FirestoreService {
 
     fun setDocument(data: Any, collectionName: String, id: String, callback: Callback<Void>){
         firebaseFirestore.collection(collectionName).document(id).set(data)
+            .addOnSuccessListener { callback.onSuccess(null) }
+            .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
+    fun deleteDocument(collectionName: String,id: String,callback: Callback<Void>){
+        firebaseFirestore.collection(collectionName).document(id).delete()
             .addOnSuccessListener { callback.onSuccess(null) }
             .addOnFailureListener { exception -> callback.onFailed(exception) }
     }
@@ -66,19 +72,6 @@ class FirestoreService {
                     }
                 }
                 .addOnFailureListener { exception -> callback.onFailed(exception) }
-    }
-
-    fun findUserByID(id: String, callback : Callback<User>){
-        firebaseFirestore.collection(USER_COLLECTION_NAME).document(id)
-                .get()
-                .addOnSuccessListener { result ->
-                    if(result.data != null){
-                        callback.onSuccess(result.toObject(User::class.java))
-                    } else {
-                        callback.onSuccess(null)
-                    }
-                }
-                .addOnFailureListener { exception -> callback.onFailed(exception)}
     }
 
 }
