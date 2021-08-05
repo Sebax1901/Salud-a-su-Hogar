@@ -36,7 +36,6 @@
             android:src="@drawable/ic_plus"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:onClick="onPlusGrandparentClicked"
             tools:ignore="OnClick" />
     </RelativeLayout>
 

@@ -58,11 +58,10 @@ class MainActivity : FragmentActivity() {
         finish()
     }
 
-    fun onPlusGrandparentClicked(view: View) {
+    /*fun onPlusGrandparentClicked(view: View) {
         val intent = Intent(this, AddGrandparentActivity::class.java)
         startActivity(intent)
-
-    }
+    }*/
 
 
 

@@ -37,7 +37,7 @@ class AddHavenActivity : AppCompatActivity() {
 
         if (haven.name.isEmpty() || haven.nurseName.isEmpty()){
             view.hideKeyboard()
-            Snackbar.make(view, "Debe ingresar un nombre para el hogar y el/la enferemero/a", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, "Debes ingresar un nombre para el hogar y el/la enferemero/a", Snackbar.LENGTH_LONG).show()
         } else {
             val firestoreService = FirestoreService()
 

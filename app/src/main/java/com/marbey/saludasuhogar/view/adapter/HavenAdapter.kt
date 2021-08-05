@@ -4,15 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.ui.fragments.HomeFragment
+import kotlin.coroutines.coroutineContext
 
 class HavenAdapter(val havenListener: HomeFragment) : RecyclerView.Adapter<HavenAdapter.ViewHolder>(){
 

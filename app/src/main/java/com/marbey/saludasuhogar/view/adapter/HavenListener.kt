@@ -17,9 +17,5 @@ interface HavenListener {
 
     }
 
-    fun onPlusClicked(){
-
-    }
-
 
 }

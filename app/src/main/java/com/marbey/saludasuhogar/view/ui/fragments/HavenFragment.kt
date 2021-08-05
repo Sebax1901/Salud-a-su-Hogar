@@ -1,5 +1,6 @@
 package com.marbey.saludasuhogar.view.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,11 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.adapter.GrandparentAdapter
 import com.marbey.saludasuhogar.view.adapter.GrandparentListener
+import com.marbey.saludasuhogar.view.ui.activities.AddGrandparentActivity
 import com.marbey.saludasuhogar.viewmodel.GrandparentViewModel
 import kotlinx.android.synthetic.main.fragment_haven.*
 
@@ -22,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_haven.*
 class HavenFragment : Fragment(), GrandparentListener {
 
     private lateinit var grandparentAdapter: GrandparentAdapter
-    private lateinit var viewModel: GrandparentViewModel
+    lateinit var viewModel: GrandparentViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_haven, container, false)
@@ -46,6 +49,16 @@ class HavenFragment : Fragment(), GrandparentListener {
 
         observeViewModel()
 
+        addGrandparentIcon.setOnClickListener {
+            onPlusGrandparentClicked(havenName, it)
+        }
+
+    }
+
+    override fun onPlusGrandparentClicked(haven: String, view: View) {
+        val intent = Intent(activity,AddGrandparentActivity::class.java)
+        intent.putExtra("havenName", haven)
+        startActivity(intent)
     }
 
     fun observeViewModel(){
@@ -64,4 +77,6 @@ class HavenFragment : Fragment(), GrandparentListener {
         val bundle = bundleOf("grandparent" to grandparent)
         findNavController().navigate(R.id.grandparentDetailFragmentDialog, bundle)
     }
+
+
 }

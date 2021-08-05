@@ -3,11 +3,14 @@ package com.marbey.saludasuhogar.view.ui.fragments
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -19,6 +22,7 @@ import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.adapter.HavenAdapter
 import com.marbey.saludasuhogar.view.adapter.HavenListener
+import com.marbey.saludasuhogar.view.ui.activities.AddGrandparentActivity
 import com.marbey.saludasuhogar.viewmodel.HavenViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -31,6 +35,7 @@ class HomeFragment : Fragment(), HavenListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
