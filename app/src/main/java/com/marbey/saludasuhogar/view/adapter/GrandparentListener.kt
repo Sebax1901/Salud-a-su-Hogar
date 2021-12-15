@@ -13,4 +13,8 @@ interface GrandparentListener {
 
     }
 
+    fun onGrandparentLongClicked(grandparent: Grandparent, view: View){
+
+    }
+
 }

@@ -56,7 +56,8 @@ class AddHavenActivity : AppCompatActivity() {
             })
 
             Handler().postDelayed({
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this,AddGrandparentActivity::class.java)
+                intent.putExtra("havenName", haven.name)
                 startActivity(intent)
                 finish()
             }, 1000)

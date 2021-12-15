@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaludASuHogar">
-        <activity android:name=".view.ui.activities.AddGrandparentActivity"></activity>
+        <activity android:name=".view.ui.activities.AddMedicineActivity" />
+        <activity android:name=".view.ui.activities.AddGrandparentActivity" />
         <activity android:name=".view.ui.activities.AddHavenActivity" />
-        <activity android:name=".view.ui.activities.SplashscreenActivity">
+        <activity android:name=".view.ui.activities.SplashscreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

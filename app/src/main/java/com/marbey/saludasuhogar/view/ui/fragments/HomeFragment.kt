@@ -9,22 +9,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.view.adapter.HavenAdapter
 import com.marbey.saludasuhogar.view.adapter.HavenListener
-import com.marbey.saludasuhogar.view.ui.activities.AddGrandparentActivity
+import com.marbey.saludasuhogar.view.ui.activities.AddHavenActivity
 import com.marbey.saludasuhogar.viewmodel.HavenViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 @Suppress("DEPRECATION")
@@ -41,18 +36,22 @@ class HomeFragment : Fragment(), HavenListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(HavenViewModel::class.java)
-        viewModel.refresh()
+        setview()
 
-        havenAdapter = HavenAdapter(this)
-
-        rvHome.apply {
-            layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-            adapter = havenAdapter
+        addHavenIcon.setOnClickListener {
+            onPlusHavenClicked()
         }
 
-        observeViewModel()
+    }
 
+    private fun onPlusHavenClicked() {
+        val intent = Intent(activity, AddHavenActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setview()
     }
 
     private fun observeViewModel(){
@@ -67,8 +66,22 @@ class HomeFragment : Fragment(), HavenListener {
         })
     }
 
+    private fun setview(){
+        viewModel = ViewModelProviders.of(this).get(HavenViewModel::class.java)
+        viewModel.refresh()
+
+        havenAdapter = HavenAdapter(this)
+
+        rvHome.apply {
+            layoutManager = LinearLayoutManager(view?.context, LinearLayoutManager.VERTICAL, false)
+            adapter = havenAdapter
+        }
+
+        observeViewModel()
+    }
+
     override fun onHavenClicked(haven: Haven, position: Int) {
-        AddHavenIcon.visibility = View.INVISIBLE
+        addHavenIcon.visibility = View.INVISIBLE
         val bundle = bundleOf("haven" to haven)
         findNavController().navigate(R.id.havenFragment, bundle)
     }
@@ -84,7 +97,7 @@ class HomeFragment : Fragment(), HavenListener {
 
     private fun showAlert(context: Context, name: String, view: View){
         AlertDialog.Builder(context)
-            .setTitle("Elminar Paciente")
+            .setTitle("Elminar Hogar")
             .setMessage("¿Deseas elmininar el hogar $name?")
             .apply {
                 setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialog, which ->

@@ -27,6 +27,11 @@ class GrandparentAdapter(val grandparentListener: GrandparentListener) : Recycle
             grandparentListener.onGrandparentClicked(grandparent, position)
         }
 
+        holder.itemView.setOnLongClickListener {
+            grandparentListener.onGrandparentLongClicked(grandparent,it)
+            return@setOnLongClickListener true
+        }
+
     }
 
     override fun getItemCount() = listGrandparent.size

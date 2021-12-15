@@ -8,7 +8,9 @@ import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
@@ -60,7 +62,6 @@ class AddGrandparentActivity : AppCompatActivity() {
             })
 
             Handler().postDelayed({
-                val fragment = HavenFragment()
                 finish()
             }, 1000)
         }

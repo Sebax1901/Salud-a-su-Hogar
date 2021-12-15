@@ -1,5 +1,6 @@
 package com.marbey.saludasuhogar.view.ui.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,11 +13,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.model.Medicine
 import com.marbey.saludasuhogar.view.adapter.MedicineAdapter
 import com.marbey.saludasuhogar.view.adapter.MedicineListener
+import com.marbey.saludasuhogar.view.ui.activities.AddMedicineActivity
 import com.marbey.saludasuhogar.viewmodel.GrandparentViewModel
 import com.marbey.saludasuhogar.viewmodel.MedicineViewModel
 import kotlinx.android.synthetic.main.fragment_grandparents_detail_dialog.*
@@ -61,6 +64,19 @@ class GrandparentsDetailDialogFragment : DialogFragment(), MedicineListener {
         observeViewModel()
 
         toolbarGrandparent.title = grandparent.name
+
+        addMedicineIcon.setOnClickListener {
+            onPlusMedicineClicked(grandparentName,it)
+        }
+
+
+
+    }
+
+    override fun onPlusMedicineClicked(grandparentName: String, view: View) {
+        val intent = Intent(activity,AddMedicineActivity::class.java)
+        intent.putExtra("grandParentName", grandparentName)
+        startActivity(intent)
     }
 
     private fun observeViewModel() {
