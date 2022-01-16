@@ -1,10 +1,13 @@
 package com.marbey.saludasuhogar.viewmodel
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
+import com.marbey.saludasuhogar.network.HAVEN_COLLECTION_NAME
 import java.lang.Exception
 
 class HavenViewModel: ViewModel() {
@@ -31,6 +34,19 @@ class HavenViewModel: ViewModel() {
 
     fun processFinished(){
         isLoading.value = true
+    }
+
+    fun deleteHaven(name: String, view: View){
+        firestoreService.deleteDocument(HAVEN_COLLECTION_NAME,name, object: Callback<Void>{
+            override fun onSuccess(result: Void?) {
+                refresh()
+                Snackbar.make(view,"Se ha eliminado el hogar $name",Snackbar.LENGTH_LONG).show()
+            }
+
+            override fun onFailed(exception: Exception) {
+                Snackbar.make(view,"Error al eliminar el hogar $name",Snackbar.LENGTH_LONG).show()
+            }
+        })
     }
 
 }

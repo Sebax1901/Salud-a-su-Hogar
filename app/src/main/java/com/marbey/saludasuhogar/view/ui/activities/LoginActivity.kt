@@ -1,85 +1,86 @@
 package com.marbey.saludasuhogar.view.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.marbey.saludasuhogar.R
-import com.marbey.saludasuhogar.model.User
-import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
-import com.marbey.saludasuhogar.network.USER_COLLECTION_NAME
 import kotlinx.android.synthetic.main.activity_login.*
-import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
 
-    private val TAG = "LoginActivity"
-
-    val auth : FirebaseAuth = FirebaseAuth.getInstance()
-    lateinit var firestoreService : FirestoreService
+    lateinit var firestoreService: FirestoreService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
         firestoreService = FirestoreService()
+
+        session()
+
     }
 
-    fun onStartClicked(view: View){
-        view.isEnabled = false
+    private fun session() {
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email = prefs.getString("email", null)
+        val provider = prefs.getString("provider", null)
 
-        auth.signInAnonymously()
-            .addOnCompleteListener { task ->
-                if(task.isSuccessful){
-                    val username = username.text.toString()
-                    firestoreService.findUserByID(username, object : Callback<User>{
-                        override fun onSuccess(result: User?) {
-                            if (result == null){
-                                var user = User()
-                                user.username = username
-                                saveUserAndStartMainActivity(user, view)
-                            } else {
-                                startMainActivity(username)
-                            }
-                        }
-                        override fun onFailed(exception: Exception) {
-                            showErrorMessage(view)
-                        }
-                    })
-                } else {
-                    showErrorMessage(view)
-                    view.isEnabled = true
-                }
-            }
+        if (email != null && provider != null) {
+            startMainActivity(email, ProviderType.valueOf(provider))
+        }
+
     }
 
-    private fun saveUserAndStartMainActivity(user: User, view: View) {
-        firestoreService.setDocument(user, USER_COLLECTION_NAME, user.username, object : Callback<Void>{
-            override fun onSuccess(result: Void?) {
-                startMainActivity(user.username)
-            }
-
-            override fun onFailed(exception: Exception) {
-                showErrorMessage(view)
-                Log.e(TAG, "Error", exception)
-                view.isEnabled = true
-            }
-        })
-    }
-
-    private fun showErrorMessage(view: View) {
-        Snackbar.make(view, getString(R.string.error_while_connecting_to_the_server), Snackbar.LENGTH_LONG)
-            .setAction("Info", null).show()
-    }
-
-    private fun startMainActivity(username : String) {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun startMainActivity(email: String, provider: ProviderType) {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
         startActivity(intent)
         finish()
     }
+
+    fun onStartClicked(view: View) {
+
+        val username = username.text.toString()
+        val password = password.text.toString()
+
+        if (username.isNotEmpty() && password.isNotEmpty()) {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        view.isEnabled = false
+                        startMainActivity(username, ProviderType.BASIC)
+                    } else {
+                        showErrorMessage(view)
+                    }
+                }
+        } else {
+            showEmptyMessage(view)
+        }
+    }
+
+    private fun showErrorMessage(view: View) {
+        Snackbar.make(
+            view,
+            getString(R.string.error_while_connecting_to_the_account),
+            Snackbar.LENGTH_LONG
+        )
+            .setAction("Info", null).show()
+        view.isEnabled = true
+    } // Print a message when the connection is failed
+
+    private fun showEmptyMessage(view: View) {
+        Snackbar.make(view, "Debes ingresar un email y una contraseña", Snackbar.LENGTH_LONG)
+            .setAction("Info", null).show()
+        view.isEnabled = true
+    } // Print a message when user is empty
+
+
 }

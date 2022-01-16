@@ -1,5 +1,6 @@
 package com.marbey.saludasuhogar.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,37 +9,43 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
 
-class GrandparentAdapter(val grandparentListener: GranparentListener) : RecyclerView.Adapter<GrandparentAdapter.ViewHolder>(){
+class GrandparentAdapter(val grandparentListener: GrandparentListener) : RecyclerView.Adapter<GrandparentAdapter.ViewHolder>(){
 
-    var listGranparent = ArrayList<Grandparent>()
+    var listGrandparent = ArrayList<Grandparent>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_grandparents, parent, false))
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: GrandparentAdapter.ViewHolder, position: Int) {
-        val grandparent = listGranparent[position] as Grandparent
+        val grandparent = listGrandparent[position] as Grandparent
 
-        holder.tvGrandparentName.text = grandparent.name
-        holder.tvGrandparentAge.text = grandparent.age.toString()
-        holder.tvGrandparentHaven.text = grandparent.haven
+        holder.tvGrandparentName.text = "Nombre: " + grandparent.name
+        holder.tvGrandparentAge.text = "Edad: " + grandparent.age.toString()
+        holder.tvGrandparentHaven.text = "Hogar: " + grandparent.haven
 
         holder.itemView.setOnClickListener {
-            grandparentListener.onGranparentClicked(grandparent, position)
+            grandparentListener.onGrandparentClicked(grandparent, position)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            grandparentListener.onGrandparentLongClicked(grandparent,it)
+            return@setOnLongClickListener true
         }
 
     }
 
-    override fun getItemCount() = listGranparent.size
+    override fun getItemCount() = listGrandparent.size
 
     fun updateData(data: List<Grandparent>){
-        listGranparent.clear()
-        listGranparent.addAll(data)
+        listGrandparent.clear()
+        listGrandparent.addAll(data)
         notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val tvGrandparentName = itemView.findViewById<TextView>(R.id.tvGranparentName)!!
-        val tvGrandparentAge = itemView.findViewById<TextView>(R.id.tvGranparentAge)!!
-        val tvGrandparentHaven = itemView.findViewById<TextView>(R.id.tvGranparentHaven)!!
+        val tvGrandparentName = itemView.findViewById<TextView>(R.id.tvGrandparentName)!!
+        val tvGrandparentAge = itemView.findViewById<TextView>(R.id.tvGrandparentAge)!!
+        val tvGrandparentHaven = itemView.findViewById<TextView>(R.id.tvGrandparentHaven)!!
     }
 
 }
