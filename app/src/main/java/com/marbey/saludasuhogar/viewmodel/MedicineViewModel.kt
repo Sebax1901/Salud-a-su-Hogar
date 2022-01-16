@@ -2,10 +2,13 @@ package com.marbey.saludasuhogar.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.model.Medicine
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
+import com.marbey.saludasuhogar.network.MEDICINE_COLLECTION_NAME
 import java.lang.Exception
+import kotlin.math.log
 
 class MedicineViewModel: ViewModel() {
     val firestorService = FirestoreService()
@@ -16,7 +19,7 @@ class MedicineViewModel: ViewModel() {
         getMedicineFromFirebase(name)
     }
 
-    fun getMedicineFromFirebase(name: String) {
+    private fun getMedicineFromFirebase(name: String) {
         firestorService.getMedicine(object : Callback<List<Medicine>>{
             override fun onSuccess(result: List<Medicine>?) {
                 listMedicine.postValue(result)
@@ -26,6 +29,18 @@ class MedicineViewModel: ViewModel() {
                 processFinished()
             }
         }, name)
+    }
+
+    fun setMedicineFromFirebase(data: Any, id : String){
+        firestorService.setDocument(data, MEDICINE_COLLECTION_NAME,id,object : Callback<Void>{
+            override fun onSuccess(result: Void?) {
+
+            }
+
+            override fun onFailed(exception: Exception) {
+
+            }
+        })
     }
 
     fun processFinished(){

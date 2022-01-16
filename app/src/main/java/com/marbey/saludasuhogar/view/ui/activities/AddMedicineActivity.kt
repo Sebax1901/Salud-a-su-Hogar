@@ -17,6 +17,7 @@ import com.marbey.saludasuhogar.network.GRANDPARENTS_COLLECTION_NAME
 import com.marbey.saludasuhogar.network.MEDICINE_COLLECTION_NAME
 import com.marbey.saludasuhogar.view.ui.fragments.DatePickerFragment
 import com.marbey.saludasuhogar.view.ui.fragments.HavenFragment
+import com.marbey.saludasuhogar.viewmodel.MedicineViewModel
 import kotlinx.android.synthetic.main.activity_add_medicine.*
 import java.lang.Exception
 import java.util.*
@@ -43,31 +44,43 @@ class AddMedicineActivity : AppCompatActivity() {
 
     private fun onDateSelected(day: Int, month: Int, year: Int){
         ChargeDateAdd.setText("$day / $month / $year")
+        medicine.dayCharge = day
+        medicine.monthCharge = month
+        medicine.yearCharge = year
     }
 
-    private fun onAddMedicineClick(grandParentName: String?, view: View){
+    private val medicine = Medicine()
 
-        val medicine = Medicine()
+    private fun onAddMedicineClick(grandParentName: String?, view: View){
 
         medicine.name = findViewById<EditText>(R.id.medicineNameAdd).text.toString()
         val quantity = findViewById<EditText>(R.id.quantityAdd).text.toString()
         medicine.grandparent = grandParentName
         val dailyDose = findViewById<EditText>(R.id.dailyDoseAdd).text.toString()
         medicine.quantity = quantity.toInt()
-        medicine.dailyDose = dailyDose.toInt()
-
+        medicine.dailyDose = dailyDose.toDouble()
+        val chargeDateAdd = findViewById<EditText>(R.id.ChargeDateAdd).toString()
 
         fun View.hideKeyboard() {
             val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.hideSoftInputFromWindow(windowToken, 0)
         }
 
-        view.hideKeyboard()
+        if(medicine.name.isNullOrEmpty() || quantity.isNullOrEmpty() || dailyDose.isNullOrEmpty() || chargeDateAdd.isNullOrEmpty()){
+            view.hideKeyboard()
+            Snackbar.make(view, "Debes ingresar todos los datos de la medicina", Snackbar.LENGTH_LONG).show()
+        } else {
+            view.hideKeyboard()
+            val medicineViewModel = MedicineViewModel()
+            medicineViewModel.setMedicineFromFirebase(medicine,medicine.name)
+        }
 
-        Snackbar.make(view,"Creando la medicina ${medicine.name} con:\n" +
-                "cantidad: ${medicine.quantity}\n" +
-                "Paciente: ${medicine.grandparent}\n" +
-                "Dosis Diaria: ${medicine.dailyDose}", Snackbar.LENGTH_LONG).show()
+        view.hideKeyboard()
+        Snackbar.make(view,"Creando la medicina ${medicine.name}", Snackbar.LENGTH_LONG).show()
+
+        Handler().postDelayed({
+            finish()
+        }, 1000)
 
     }
 

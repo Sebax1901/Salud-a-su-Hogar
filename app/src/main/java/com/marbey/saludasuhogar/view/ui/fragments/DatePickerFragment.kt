@@ -10,7 +10,7 @@ import java.util.*
 
 class DatePickerFragment(val listener: (day: Int, month: Int, year: Int) -> Unit): DialogFragment(), DatePickerDialog.OnDateSetListener {
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        listener(dayOfMonth, month, year)
+        listener(dayOfMonth, month+1, year)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

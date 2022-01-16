@@ -51,17 +51,7 @@ class GrandparentsDetailDialogFragment : DialogFragment(), MedicineListener {
         val grandparent = arguments?.getSerializable("grandparent") as Grandparent
         var grandparentName = grandparent.name
 
-        viewModel = ViewModelProviders.of(this).get(MedicineViewModel::class.java)
-        viewModel.refresh(grandparentName)
-
-        medicineAdapter = MedicineAdapter(this)
-
-        rvMedicine.apply {
-            layoutManager = GridLayoutManager(context, 2)
-            adapter = medicineAdapter
-        }
-
-        observeViewModel()
+        setView()
 
         toolbarGrandparent.title = grandparent.name
 
@@ -88,6 +78,27 @@ class GrandparentsDetailDialogFragment : DialogFragment(), MedicineListener {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    }
+
+    fun setView(){
+        val grandparent = arguments?.getSerializable("grandparent") as Grandparent
+        var grandparentName = grandparent.name
+        viewModel = ViewModelProviders.of(this).get(MedicineViewModel::class.java)
+        viewModel.refresh(grandparentName)
+
+        medicineAdapter = MedicineAdapter(this)
+
+        rvMedicine.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = medicineAdapter
+        }
+
+        observeViewModel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setView()
     }
 
 }

@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:ems="10"
-                    android:hint="@string/CurrentQuantity"
+                    android:hint="@string/chargeQuantity"
                     android:inputType="phone"
                     android:padding="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -57,7 +57,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:27.0.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
-    implementation 'com.google.firebase:firebase-core:20.0.1'
+    implementation 'com.google.firebase:firebase-core:20.0.2'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
 
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.1.0'

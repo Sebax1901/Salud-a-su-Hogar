@@ -5,26 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.fragments.HomeFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="5dp"/>
     
     <RelativeLayout
         android:id="@+id/rlBaseHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:alpha="0.6"/>
+            android:alpha="0.6"
+            android:background="@color/colorPrimary" />
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
-
 
     </RelativeLayout>
 
