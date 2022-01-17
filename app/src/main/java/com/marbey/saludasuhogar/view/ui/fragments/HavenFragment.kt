@@ -37,6 +37,8 @@ class HavenFragment : Fragment(), GrandparentListener {
         return inflater.inflate(R.layout.fragment_haven, container, false)
     }
 
+    iaghfa8igfahgf
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
