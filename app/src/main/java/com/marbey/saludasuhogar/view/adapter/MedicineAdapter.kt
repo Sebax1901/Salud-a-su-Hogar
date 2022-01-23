@@ -8,9 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Medicine
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class MedicineAdapter(val medicineListener: MedicineListener) : RecyclerView.Adapter<MedicineAdapter.ViewHolder>(), DateEnd{
 

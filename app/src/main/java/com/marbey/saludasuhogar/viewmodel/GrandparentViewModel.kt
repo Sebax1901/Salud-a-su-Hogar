@@ -8,19 +8,17 @@ import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
 import com.marbey.saludasuhogar.network.GRANDPARENTS_COLLECTION_NAME
-import com.marbey.saludasuhogar.network.HAVEN_COLLECTION_NAME
-import java.lang.Exception
 
 class GrandparentViewModel: ViewModel() {
-    val firestoreService = FirestoreService()
+    private val firestoreService = FirestoreService()
     var listGrandparent: MutableLiveData<List<Grandparent>> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
 
     fun refresh(name: String){
-        getGrandparentFromFirebase(name)
+        getGrandParentFromFirebase(name)
     }
 
-    fun getGrandparentFromFirebase(haven: String){
+    private fun getGrandParentFromFirebase(haven: String){
         firestoreService.getGrandparent(object: Callback<List<Grandparent>> {
             override fun onSuccess(result: List<Grandparent>?) {
                 listGrandparent.postValue(result)

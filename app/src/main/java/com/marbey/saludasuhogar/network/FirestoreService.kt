@@ -5,14 +5,12 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.model.Medicine
-import com.marbey.saludasuhogar.model.User
 
 const val HAVEN_COLLECTION_NAME = "havens"
 const val GRANDPARENTS_COLLECTION_NAME = "grandparents"
 const val MEDICINE_COLLECTION_NAME = "medicines"
 
 class FirestoreService {
-
 
     private val firebaseFirestore = FirebaseFirestore.getInstance()
     private val settings = FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
@@ -23,6 +21,12 @@ class FirestoreService {
 
     fun setDocument(data: Any, collectionName: String, id: String, callback: Callback<Void>){
         firebaseFirestore.collection(collectionName).document(id).set(data)
+            .addOnSuccessListener { callback.onSuccess(null) }
+            .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
+    fun updateDocument(field: String, data : Any, collectionName: String, id: String, callback: Callback<Void>){
+        firebaseFirestore.collection(collectionName).document(id).update(field,data)
             .addOnSuccessListener { callback.onSuccess(null) }
             .addOnFailureListener { exception -> callback.onFailed(exception) }
     }

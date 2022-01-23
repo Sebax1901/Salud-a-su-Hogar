@@ -1,26 +1,18 @@
 package com.marbey.saludasuhogar.view.ui.activities
 
-import android.app.DatePickerDialog
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Medicine
-import com.marbey.saludasuhogar.network.Callback
-import com.marbey.saludasuhogar.network.FirestoreService
-import com.marbey.saludasuhogar.network.GRANDPARENTS_COLLECTION_NAME
-import com.marbey.saludasuhogar.network.MEDICINE_COLLECTION_NAME
 import com.marbey.saludasuhogar.view.ui.fragments.DatePickerFragment
-import com.marbey.saludasuhogar.view.ui.fragments.HavenFragment
 import com.marbey.saludasuhogar.viewmodel.MedicineViewModel
 import kotlinx.android.synthetic.main.activity_add_medicine.*
-import java.lang.Exception
-import java.util.*
 
 class AddMedicineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

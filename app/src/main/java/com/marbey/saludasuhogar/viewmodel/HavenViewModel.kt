@@ -8,7 +8,6 @@ import com.marbey.saludasuhogar.model.Haven
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
 import com.marbey.saludasuhogar.network.HAVEN_COLLECTION_NAME
-import java.lang.Exception
 
 class HavenViewModel: ViewModel() {
     val firestoreService = FirestoreService()

@@ -1,10 +1,10 @@
 package com.marbey.saludasuhogar.view.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.marbey.saludasuhogar.R
 import kotlinx.android.synthetic.main.activity_splashscreen.*
 

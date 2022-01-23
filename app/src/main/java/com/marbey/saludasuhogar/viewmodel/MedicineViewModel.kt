@@ -2,13 +2,10 @@ package com.marbey.saludasuhogar.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.model.Medicine
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
 import com.marbey.saludasuhogar.network.MEDICINE_COLLECTION_NAME
-import java.lang.Exception
-import kotlin.math.log
 
 class MedicineViewModel: ViewModel() {
     val firestorService = FirestoreService()

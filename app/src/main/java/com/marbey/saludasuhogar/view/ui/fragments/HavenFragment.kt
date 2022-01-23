@@ -5,17 +5,15 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.model.Haven
@@ -23,8 +21,6 @@ import com.marbey.saludasuhogar.view.adapter.GrandparentAdapter
 import com.marbey.saludasuhogar.view.adapter.GrandparentListener
 import com.marbey.saludasuhogar.view.ui.activities.AddGrandparentActivity
 import com.marbey.saludasuhogar.viewmodel.GrandparentViewModel
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_grandparents_detail_dialog.*
 import kotlinx.android.synthetic.main.fragment_haven.*
 
 @Suppress("DEPRECATION")
@@ -34,14 +30,12 @@ class HavenFragment : Fragment(), GrandparentListener {
     lateinit var viewModel: GrandparentViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        /*tbMain.setNavigationIcon(R.drawable.ic_logout)*/
         return inflater.inflate(R.layout.fragment_haven, container, false)
     }
 
-    iaghfa8igfahgf
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val haven = arguments?.getSerializable("haven") as Haven
         val havenName = haven.name
         setView()
@@ -96,6 +90,9 @@ class HavenFragment : Fragment(), GrandparentListener {
             .apply {
                 setPositiveButton(R.string.delete, DialogInterface.OnClickListener { dialog, which ->
                     deleteGrandparent(name, view)
+                })
+                setNeutralButton("Editar", DialogInterface.OnClickListener { dialog, which ->
+
                 })
                 setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, which ->
 

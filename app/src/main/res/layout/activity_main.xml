@@ -14,8 +14,7 @@
             android:id="@+id/tbMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:navigationIcon="@drawable/ic_logout">
+            android:background="@color/colorPrimary">
 
             <ImageView
                 android:layout_width="wrap_content"

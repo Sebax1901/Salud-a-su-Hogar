@@ -1,25 +1,18 @@
 package com.marbey.saludasuhogar.view.ui.activities
 
 import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.marbey.saludasuhogar.R
 import com.marbey.saludasuhogar.model.Grandparent
 import com.marbey.saludasuhogar.network.Callback
 import com.marbey.saludasuhogar.network.FirestoreService
 import com.marbey.saludasuhogar.network.GRANDPARENTS_COLLECTION_NAME
-import com.marbey.saludasuhogar.network.HAVEN_COLLECTION_NAME
-import com.marbey.saludasuhogar.view.ui.fragments.HavenFragment
-import java.lang.Exception
 
 class AddGrandparentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
